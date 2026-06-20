@@ -1,0 +1,63 @@
+name: LaunchdManage
+options:
+  bundleIdPrefix: com.steveshi
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "16.0"
+  generateEmptyDirectories: true
+  localizations:
+    - en
+    - zh-Hans
+packages:
+  CodeEditor:
+    url: https://github.com/ZeeZide/CodeEditor.git
+    branch: main
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    ENABLE_USER_SCRIPT_SANDBOXING: false
+    CODE_SIGN_IDENTITY: "-"
+    PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.launchdmanage
+    INFOPLIST_KEY_LSApplicationCategoryType: "public.app-category.utilities"
+    INFOPLIST_KEY_CFBundleDisplayName: LaunchdManage
+    INFOPLIST_KEY_NSHumanReadableCopyright: "Copyright © 2025 Steve Shi. All rights reserved."
+targets:
+  LaunchdManage:
+    type: application
+    platform: macOS
+    sources:
+      - path: LaunchdManage
+    dependencies:
+      - package: CodeEditor
+      - target: PrivilegedHelper
+        embed: true
+        path: Contents/Library/LaunchServices
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.launchdmanage
+        MARKETING_VERSION: 0.0.1
+        CURRENT_PROJECT_VERSION: 1
+        INFOPLIST_KEY_LSApplicationCategoryType: "public.app-category.utilities"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        SWIFT_EMIT_LOC_STRINGS: "YES"
+        ENABLE_APP_SANDBOX: false
+        INFOPLIST_KEY_NSMainNibFile: ""
+        GENERATE_INFOPLIST_FILE: "YES"
+
+  PrivilegedHelper:
+    type: tool
+    platform: macOS
+    sources:
+      - path: PrivilegedHelper
+      - path: LaunchdManage/XPC/HelperProtocol.swift
+    settings:
+      base:
+        PRODUCT_NAME: com.steveshi.launchdmanage.helper
+        PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.launchdmanage.helper
+        CREATE_INFOPLIST_SECTION_IN_BINARY: "YES"
+        INFOPLIST_FILE: PrivilegedHelper/Info.plist
+        LAUNCHD_PLIST_FILE: PrivilegedHelper/launchd.plist
+        CODE_SIGN_IDENTITY: "-"
+        SWIFT_VERSION: "6.0"
+        MACOSX_DEPLOYMENT_TARGET: "14.0"

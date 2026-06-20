@@ -1,0 +1,3335 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": ""
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": ""
+          }
+        }
+      }
+    },
+    "-": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "-"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "-"
+          }
+        }
+      }
+    },
+    "(Range: -20 to 20, lower is higher priority)": {
+      "comment": "Detail hint label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(范围: -20 到 20，越低优先级越高)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "(Range: -20 to 20, lower is higher priority)"
+          }
+        }
+      }
+    },
+    "%@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%@"
+          }
+        }
+      }
+    },
+    "%@ (%lld)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ (%2$lld)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (%lld)"
+          }
+        }
+      }
+    },
+    "%@ • %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ • %2$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ • %@"
+          }
+        }
+      }
+    },
+    "%lld seconds": {
+      "comment": "Interval value",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld seconds"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%lld seconds"
+          }
+        }
+      }
+    },
+    "=": {
+      "comment": "Equal sign separator",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "="
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "="
+          }
+        }
+      }
+    },
+    ">_": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": ">_"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": ">_"
+          }
+        }
+      }
+    },
+    "Action": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Action"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Action"
+          }
+        }
+      }
+    },
+    "Active": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "活跃中"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Active"
+          }
+        }
+      }
+    },
+    "Add Argument": {
+      "comment": "Button label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加参数"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Add Argument"
+          }
+        }
+      }
+    },
+    "Add Variable": {
+      "comment": "Button label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加变量"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Add Variable"
+          }
+        }
+      }
+    },
+    "Always": {
+      "comment": "KeepAlive option",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "始终常驻"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Always"
+          }
+        }
+      }
+    },
+    "Apply": {
+      "comment": "Button label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保存并应用"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Apply"
+          }
+        }
+      }
+    },
+    "Are you sure you want to delete '%@'? This will stop the service and permanently delete its configuration file.": {
+      "comment": "Delete confirmation message",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您确定要删除“%@”吗？这将停止该服务并永久删除其配置文件。"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Are you sure you want to delete '%@'? This will stop the service and permanently delete its configuration file."
+          }
+        }
+      }
+    },
+    "Arguments": {
+      "comment": "Overview label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "运行参数"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Arguments"
+          }
+        }
+      }
+    },
+    "Arguments (argv)": {
+      "comment": "Form label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "运行参数 (argv)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Arguments (argv)"
+          }
+        }
+      }
+    },
+    "argv[%lld]": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "argv[%lld]"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "argv[%lld]"
+          }
+        }
+      }
+    },
+    "Calendar Intervals": {
+      "comment": "Overview label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日历调度"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Calendar Intervals"
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "comment": "Alert action\nButton label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "Category": {
+      "comment": "Form label\nOverview label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分类"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Category"
+          }
+        }
+      }
+    },
+    "Choose...": {
+      "comment": "Button label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择..."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Choose..."
+          }
+        }
+      }
+    },
+    "Combined": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Combined"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Combined"
+          }
+        }
+      }
+    },
+    "Conditional": {
+      "comment": "KeepAlive option",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "条件常驻"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Conditional"
+          }
+        }
+      }
+    },
+    "Conditions": {
+      "comment": "Form label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "触发条件"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Conditions"
+          }
+        }
+      }
+    },
+    "Configuration": {
+      "comment": "Detail tab",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "配置"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Configuration"
+          }
+        }
+      }
+    },
+    "Conflict: Both KeepAlive and StartInterval are enabled": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conflict: Both KeepAlive and StartInterval are enabled"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Conflict: Both KeepAlive and StartInterval are enabled"
+          }
+        }
+      }
+    },
+    "Console Theme:": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Console Theme:"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Console Theme:"
+          }
+        }
+      }
+    },
+    "Control": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Control"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Control"
+          }
+        }
+      }
+    },
+    "Control launchd Service": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Control launchd Service"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Control launchd Service"
+          }
+        }
+      }
+    },
+    "CPU": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CPU"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "CPU"
+          }
+        }
+      }
+    },
+    "Create": {
+      "comment": "Button label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Create"
+          }
+        }
+      }
+    },
+    "Create a new service": {
+      "comment": "New button tooltip",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "创建新服务"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Create a new service"
+          }
+        }
+      }
+    },
+    "Day %lld": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Day %lld"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Day %lld"
+          }
+        }
+      }
+    },
+    "Default": {
+      "comment": "Option label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Default"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Default"
+          }
+        }
+      }
+    },
+    "Delay Value": {
+      "comment": "Form label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delay Value"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Delay Value"
+          }
+        }
+      }
+    },
+    "Delete": {
+      "comment": "Alert action\nContext menu action",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Delete"
+          }
+        }
+      }
+    },
+    "Delete Service": {
+      "comment": "Alert title",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除服务"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Delete Service"
+          }
+        }
+      }
+    },
+    "Directory & Output Paths": {
+      "comment": "Form section",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目录与输出路径"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Directory & Output Paths"
+          }
+        }
+      }
+    },
+    "Directory not accessible: %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Directory not accessible: %@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Directory not accessible: %@"
+          }
+        }
+      }
+    },
+    "Disable": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "禁用"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Disable"
+          }
+        }
+      }
+    },
+    "Disabled": {
+      "comment": "Form label\nOverview label\nService disabled badge",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已禁用"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Disabled"
+          }
+        }
+      }
+    },
+    "Display read-only system agents and daemons protected by SIP.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Display read-only system agents and daemons protected by SIP."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Display read-only system agents and daemons protected by SIP."
+          }
+        }
+      }
+    },
+    "Enable": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "启用"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Enable"
+          }
+        }
+      }
+    },
+    "Environment Variables": {
+      "comment": "Form section",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "环境变量"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Environment Variables"
+          }
+        }
+      }
+    },
+    "Error": {
+      "comment": "Alert title",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "错误"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Error"
+          }
+        }
+      }
+    },
+    "Error (%lld)": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "发生错误 (%lld)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Error (%lld)"
+          }
+        }
+      }
+    },
+    "Every minute": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every minute"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Every minute"
+          }
+        }
+      }
+    },
+    "Executable program does not exist": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Executable program does not exist"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Executable program does not exist"
+          }
+        }
+      }
+    },
+    "Failed to disable %@: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Failed to disable %1$@: %2$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to disable %@: %@"
+          }
+        }
+      }
+    },
+    "Failed to enable %@: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Failed to enable %1$@: %2$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to enable %@: %@"
+          }
+        }
+      }
+    },
+    "Failed to encode plist data": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to encode plist data"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Failed to encode plist data"
+          }
+        }
+      }
+    },
+    "Failed to kickstart %@: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Failed to kickstart %1$@: %2$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to kickstart %@: %@"
+          }
+        }
+      }
+    },
+    "Failed to load %@: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Failed to load %1$@: %2$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to load %@: %@"
+          }
+        }
+      }
+    },
+    "Failed to load XML: %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to load XML: %@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Failed to load XML: %@"
+          }
+        }
+      }
+    },
+    "Failed to register helper: %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to register helper: %@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Failed to register helper: %@"
+          }
+        }
+      }
+    },
+    "Failed to send signal %d to %@: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Failed to send signal %1$d to %2$@: %3$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to send signal %d to %@: %@"
+          }
+        }
+      }
+    },
+    "Failed to sync XML back to form: %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to sync XML back to form: %@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Failed to sync XML back to form: %@"
+          }
+        }
+      }
+    },
+    "Failed to unload %@: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Failed to unload %1$@: %2$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to unload %@: %@"
+          }
+        }
+      }
+    },
+    "Failed to unregister helper: %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to unregister helper: %@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Failed to unregister helper: %@"
+          }
+        }
+      }
+    },
+    "Filter logs...": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter logs..."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Filter logs..."
+          }
+        }
+      }
+    },
+    "Font Size:": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font Size:"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Font Size:"
+          }
+        }
+      }
+    },
+    "Friday": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Friday"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Friday"
+          }
+        }
+      }
+    },
+    "General": {
+      "comment": "Overview section",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "通用"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "General"
+          }
+        }
+      }
+    },
+    "Global Agents": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全局代理 (Global Agents)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Global Agents"
+          }
+        }
+      }
+    },
+    "Global Daemons": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统守护进程 (Global Daemons)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Global Daemons"
+          }
+        }
+      }
+    },
+    "Green": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Green"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Green"
+          }
+        }
+      }
+    },
+    "Helper Status:": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "辅助工具状态："
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Helper Status:"
+          }
+        }
+      }
+    },
+    "Helper Tool": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "特权辅助工具"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Helper Tool"
+          }
+        }
+      }
+    },
+    "Helper tool registered successfully.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Helper tool registered successfully."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Helper tool registered successfully."
+          }
+        }
+      }
+    },
+    "Helper tool unregistered successfully.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Helper tool unregistered successfully."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Helper tool unregistered successfully."
+          }
+        }
+      }
+    },
+    "Hide Disabled Services": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "隐藏已禁用的服务"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Hide Disabled Services"
+          }
+        }
+      }
+    },
+    "Hide services that have been explicitly disabled in launchd.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide services that have been explicitly disabled in launchd."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Hide services that have been explicitly disabled in launchd."
+          }
+        }
+      }
+    },
+    "Identity & General": {
+      "comment": "Form section",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "标识与通用"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Identity & General"
+          }
+        }
+      }
+    },
+    "Install Helper Tool": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "安装辅助工具"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Install Helper Tool"
+          }
+        }
+      }
+    },
+    "Interval Value": {
+      "comment": "Form label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "间隔时间"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Interval Value"
+          }
+        }
+      }
+    },
+    "Invalid plist format": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid plist format"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Invalid plist format"
+          }
+        }
+      }
+    },
+    "Invalid plist format: %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid plist format: %@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Invalid plist format: %@"
+          }
+        }
+      }
+    },
+    "It is a best practice to use reverse-domain format (e.g., com.steveshi.appname) to prevent naming collisions.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It is a best practice to use reverse-domain format (e.g., com.steveshi.appname) to prevent naming collisions."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "It is a best practice to use reverse-domain format (e.g., com.steveshi.appname) to prevent naming collisions."
+          }
+        }
+      }
+    },
+    "Keep Alive": {
+      "comment": "Form label\nOverview label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "常驻运行 (KeepAlive)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Keep Alive"
+          }
+        }
+      }
+    },
+    "Keep Alive Type": {
+      "comment": "Form label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "常驻类型"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Keep Alive Type"
+          }
+        }
+      }
+    },
+    "KeepAlive instructs launchd to keep the process running continuously. StartInterval schedules it to launch periodically. Combining them usually yields unpredictable behavior.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "KeepAlive instructs launchd to keep the process running continuously. StartInterval schedules it to launch periodically. Combining them usually yields unpredictable behavior."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "KeepAlive instructs launchd to keep the process running continuously. StartInterval schedules it to launch periodically. Combining them usually yields unpredictable behavior."
+          }
+        }
+      }
+    },
+    "Key": {
+      "comment": "Environment variable key",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "键"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Key"
+          }
+        }
+      }
+    },
+    "Label": {
+      "comment": "Form label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "标识 (Label)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Label"
+          }
+        }
+      }
+    },
+    "Label cannot be empty": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Label cannot be empty"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Label cannot be empty"
+          }
+        }
+      }
+    },
+    "Label contains unusual characters": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Label contains unusual characters"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Label contains unusual characters"
+          }
+        }
+      }
+    },
+    "Label does not use reverse-domain format": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Label does not use reverse-domain format"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Label does not use reverse-domain format"
+          }
+        }
+      }
+    },
+    "Last Exit Code": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last Exit Code"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Last Exit Code"
+          }
+        }
+      }
+    },
+    "Launch Program": {
+      "comment": "Form section",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "启动程序"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Launch Program"
+          }
+        }
+      }
+    },
+    "launchd executes tasks from the system root domain. Using relative paths (e.g. 'myscript.sh') may fail unless WorkingDirectory is properly set.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "launchd executes tasks from the system root domain. Using relative paths (e.g. 'myscript.sh') may fail unless WorkingDirectory is properly set."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "launchd executes tasks from the system root domain. Using relative paths (e.g. 'myscript.sh') may fail unless WorkingDirectory is properly set."
+          }
+        }
+      }
+    },
+    "Launchd labels should typically contain only alphanumeric characters, dots, and hyphens.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Launchd labels should typically contain only alphanumeric characters, dots, and hyphens."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Launchd labels should typically contain only alphanumeric characters, dots, and hyphens."
+          }
+        }
+      }
+    },
+    "launchd Service": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "launchd Service"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "launchd Service"
+          }
+        }
+      }
+    },
+    "List launchd Services": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "List launchd Services"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "List launchd Services"
+          }
+        }
+      }
+    },
+    "Load": {
+      "comment": "Context menu action",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "加载"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Load"
+          }
+        }
+      }
+    },
+    "Load Failed": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "加载失败"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Load Failed"
+          }
+        }
+      }
+    },
+    "Loaded": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已加载"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Loaded"
+          }
+        }
+      }
+    },
+    "Loading configuration...": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在加载配置..."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Loading configuration..."
+          }
+        }
+      }
+    },
+    "Loading Services...": {
+      "comment": "Sidebar loading indicator",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在加载服务..."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Loading Services..."
+          }
+        }
+      }
+    },
+    "Log Source:": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log Source:"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Log Source:"
+          }
+        }
+      }
+    },
+    "Memory": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Memory"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Memory"
+          }
+        }
+      }
+    },
+    "Minute %lld": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minute %lld"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Minute %lld"
+          }
+        }
+      }
+    },
+    "Missing Label key in plist: %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Missing Label key in plist: %@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Missing Label key in plist: %@"
+          }
+        }
+      }
+    },
+    "Monday": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monday"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Monday"
+          }
+        }
+      }
+    },
+    "Month %lld": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Month %lld"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Month %lld"
+          }
+        }
+      }
+    },
+    "Must specify Program or ProgramArguments": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Must specify Program or ProgramArguments"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Must specify Program or ProgramArguments"
+          }
+        }
+      }
+    },
+    "New Service": {
+      "comment": "New button\nWindow title",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新建服务"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "New Service"
+          }
+        }
+      }
+    },
+    "Nice (Priority adjustment)": {
+      "comment": "Form label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nice 值 (优先级调整)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Nice (Priority adjustment)"
+          }
+        }
+      }
+    },
+    "No": {
+      "comment": "Boolean value",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "否"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "No"
+          }
+        }
+      }
+    },
+    "No executable program specified": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No executable program specified"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "No executable program specified"
+          }
+        }
+      }
+    },
+    "No logs found": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No logs found"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "No logs found"
+          }
+        }
+      }
+    },
+    "No Service Selected": {
+      "comment": "Empty state title",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Service Selected"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "No Service Selected"
+          }
+        }
+      }
+    },
+    "No standard error redirection configured.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No standard error redirection configured."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "No standard error redirection configured."
+          }
+        }
+      }
+    },
+    "No standard output redirection configured.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No standard output redirection configured."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "No standard output redirection configured."
+          }
+        }
+      }
+    },
+    "Not Found": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not Found"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Not Found"
+          }
+        }
+      }
+    },
+    "Not Loaded": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未加载"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Not Loaded"
+          }
+        }
+      }
+    },
+    "Not Registered": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not Registered"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Not Registered"
+          }
+        }
+      }
+    },
+    "Ocean": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocean"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Ocean"
+          }
+        }
+      }
+    },
+    "OK": {
+      "comment": "Button label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "确定"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "OK"
+          }
+        }
+      }
+    },
+    "Only if crashed": {
+      "comment": "KeepAlive sub-option",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仅当异常崩溃时"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Only if crashed"
+          }
+        }
+      }
+    },
+    "Only if successful exit": {
+      "comment": "KeepAlive sub-option",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仅当成功退出时"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Only if successful exit"
+          }
+        }
+      }
+    },
+    "Open in New Window": {
+      "comment": "Context menu action",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在新窗口打开编辑"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Open in New Window"
+          }
+        }
+      }
+    },
+    "Operations:": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Operations:"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Operations:"
+          }
+        }
+      }
+    },
+    "Overview": {
+      "comment": "Detail tab",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "概览"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Overview"
+          }
+        }
+      }
+    },
+    "Parent directory for %@ does not exist": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parent directory for %@ does not exist"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Parent directory for %@ does not exist"
+          }
+        }
+      }
+    },
+    "Paths": {
+      "comment": "Overview section",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "路径"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Paths"
+          }
+        }
+      }
+    },
+    "Perform actions like load, unload, start, or stop on a selected service.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Perform actions like load, unload, start, or stop on a selected service."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Perform actions like load, unload, start, or stop on a selected service."
+          }
+        }
+      }
+    },
+    "PID": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PID"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "PID"
+          }
+        }
+      }
+    },
+    "Please provide a unique identifier for your service.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Please provide a unique identifier for your service."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Please provide a unique identifier for your service."
+          }
+        }
+      }
+    },
+    "Plist file not found: %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plist file not found: %@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Plist file not found: %@"
+          }
+        }
+      }
+    },
+    "Plist Path": {
+      "comment": "Overview label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plist 路径"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Plist Path"
+          }
+        }
+      }
+    },
+    "Priority Value": {
+      "comment": "Form label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "优先级"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Priority Value"
+          }
+        }
+      }
+    },
+    "Process Info": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Process Info"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Process Info"
+          }
+        }
+      }
+    },
+    "Process is not running.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Process is not running."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Process is not running."
+          }
+        }
+      }
+    },
+    "Process Parameters": {
+      "comment": "Form section",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "进程参数"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Process Parameters"
+          }
+        }
+      }
+    },
+    "Process Type": {
+      "comment": "Form label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "进程类型"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Process Type"
+          }
+        }
+      }
+    },
+    "Program": {
+      "comment": "Overview label\nOverview section",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "程序"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Program"
+          }
+        }
+      }
+    },
+    "Program Path": {
+      "comment": "Form label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "程序路径"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Program Path"
+          }
+        }
+      }
+    },
+    "Refresh": {
+      "comment": "Refresh button",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刷新"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Refresh"
+          }
+        }
+      }
+    },
+    "Refresh service list": {
+      "comment": "Refresh button tooltip",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刷新服务列表"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Refresh service list"
+          }
+        }
+      }
+    },
+    "Relative path used for program": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Relative path used for program"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Relative path used for program"
+          }
+        }
+      }
+    },
+    "Requires Approval": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Requires Approval"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Requires Approval"
+          }
+        }
+      }
+    },
+    "Resource Usage": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resource Usage"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Resource Usage"
+          }
+        }
+      }
+    },
+    "Retrieve all launchd services registered in the system.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retrieve all launchd services registered in the system."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Retrieve all launchd services registered in the system."
+          }
+        }
+      }
+    },
+    "Reveal in Finder": {
+      "comment": "Context menu action",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 Finder 中显示"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Reveal in Finder"
+          }
+        }
+      }
+    },
+    "Revert": {
+      "comment": "Button label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "放弃修改"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Revert"
+          }
+        }
+      }
+    },
+    "Run at Load": {
+      "comment": "Form label\nOverview label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "加载时运行 (RunAtLoad)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Run at Load"
+          }
+        }
+      }
+    },
+    "Running": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Running"
+          }
+        }
+      }
+    },
+    "Running (PID: %lld)": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "运行中 (PID: %lld)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Running (PID: %lld)"
+          }
+        }
+      }
+    },
+    "Saturday": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saturday"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Saturday"
+          }
+        }
+      }
+    },
+    "Schedule": {
+      "comment": "Overview section",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schedule"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Schedule"
+          }
+        }
+      }
+    },
+    "Scheduling & Keep Alive": {
+      "comment": "Form section",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "调度与常驻"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Scheduling & Keep Alive"
+          }
+        }
+      }
+    },
+    "Search Services": {
+      "comment": "Search field placeholder",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "搜索服务"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Search Services"
+          }
+        }
+      }
+    },
+    "seconds": {
+      "comment": "Seconds label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "seconds"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "seconds"
+          }
+        }
+      }
+    },
+    "seconds (e.g. 3600 for 1 hour)": {
+      "comment": "Detail hint label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "秒 (例如 3600 代表 1 小时)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "seconds (e.g. 3600 for 1 hour)"
+          }
+        }
+      }
+    },
+    "Select a service from the sidebar to view its details.": {
+      "comment": "Empty state description",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select a service from the sidebar to view its details."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Select a service from the sidebar to view its details."
+          }
+        }
+      }
+    },
+    "Serialization failed: %@": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serialization failed: %@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Serialization failed: %@"
+          }
+        }
+      }
+    },
+    "Service": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Service"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Service"
+          }
+        }
+      }
+    },
+    "Service '%@' not found.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Service '%@' not found."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Service '%@' not found."
+          }
+        }
+      }
+    },
+    "Service Action": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Service Action"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Service Action"
+          }
+        }
+      }
+    },
+    "Service Label is empty": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Service Label is empty"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Service Label is empty"
+          }
+        }
+      }
+    },
+    "Services": {
+      "comment": "Sidebar navigation title",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Services"
+          }
+        }
+      }
+    },
+    "Services:": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Services:"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Services:"
+          }
+        }
+      }
+    },
+    "Show System Services": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示系统只读服务"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Show System Services"
+          }
+        }
+      }
+    },
+    "Show/Hide Inspector": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示/隐藏监控栏"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Show/Hide Inspector"
+          }
+        }
+      }
+    },
+    "Standard Error": {
+      "comment": "Overview label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "标准错误"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Standard Error"
+          }
+        }
+      }
+    },
+    "Standard Error Path": {
+      "comment": "Form label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "标准错误路径 (stderr)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Standard Error Path"
+          }
+        }
+      }
+    },
+    "Standard Out Path": {
+      "comment": "Form label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "标准输出路径 (stdout)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Standard Out Path"
+          }
+        }
+      }
+    },
+    "Standard Output": {
+      "comment": "Overview label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "标准输出"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Standard Output"
+          }
+        }
+      }
+    },
+    "Start": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "启动"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Start"
+          }
+        }
+      }
+    },
+    "Start Interval": {
+      "comment": "Overview label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "运行间隔"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Start Interval"
+          }
+        }
+      }
+    },
+    "Start Interval (Seconds)": {
+      "comment": "Form label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "定时运行间隔 (秒)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Start Interval (Seconds)"
+          }
+        }
+      }
+    },
+    "Status": {
+      "comment": "Overview label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "运行状态"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Status"
+          }
+        }
+      }
+    },
+    "Stop": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "停止"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Stop"
+          }
+        }
+      }
+    },
+    "Stopped": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已停止"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Stopped"
+          }
+        }
+      }
+    },
+    "Stream": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stream"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Stream"
+          }
+        }
+      }
+    },
+    "Successfully executed %@ on %@.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Successfully executed %1$@ on %2$@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Successfully executed %@ on %@."
+          }
+        }
+      }
+    },
+    "Sunday": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sunday"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Sunday"
+          }
+        }
+      }
+    },
+    "System Agents": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "只读系统代理 (System Agents)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "System Agents"
+          }
+        }
+      }
+    },
+    "System Daemons": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "只读系统进程 (System Daemons)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "System Daemons"
+          }
+        }
+      }
+    },
+    "System Log": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System Log"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "System Log"
+          }
+        }
+      }
+    },
+    "Terminal": {
+      "comment": "Detail tab",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "终端"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Terminal"
+          }
+        }
+      }
+    },
+    "The folder '%@' was not found. launchd cannot create log files if their parent directory does not exist, which will block service loading.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The folder '%@' was not found. launchd cannot create log files if their parent directory does not exist, which will block service loading."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "The folder '%@' was not found. launchd cannot create log files if their parent directory does not exist, which will block service loading."
+          }
+        }
+      }
+    },
+    "The path '%@' was not found on this system. Please check if the target script or application is installed.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The path '%@' was not found on this system. Please check if the target script or application is installed."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "The path '%@' was not found on this system. Please check if the target script or application is installed."
+          }
+        }
+      }
+    },
+    "The privileged helper tool is required to manage global launch daemons under /Library/LaunchDaemons with root authority.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The privileged helper tool is required to manage global launch daemons under /Library/LaunchDaemons with root authority."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "The privileged helper tool is required to manage global launch daemons under /Library/LaunchDaemons with root authority."
+          }
+        }
+      }
+    },
+    "Throttle Interval": {
+      "comment": "Form label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "限流间隔 (ThrottleInterval)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Throttle Interval"
+          }
+        }
+      }
+    },
+    "Thursday": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thursday"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Thursday"
+          }
+        }
+      }
+    },
+    "Toggle Inspector": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示/隐藏监控栏"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Toggle Inspector"
+          }
+        }
+      }
+    },
+    "Tuesday": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tuesday"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Tuesday"
+          }
+        }
+      }
+    },
+    "Uninstall Helper Tool": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "注销辅助工具"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uninstall Helper Tool"
+          }
+        }
+      }
+    },
+    "Unknown": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未知状态"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Unknown"
+          }
+        }
+      }
+    },
+    "Unload": {
+      "comment": "Context menu action",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "卸载"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Unload"
+          }
+        }
+      }
+    },
+    "Uptime": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uptime"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uptime"
+          }
+        }
+      }
+    },
+    "User Agents": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用户代理 (User Agents)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "User Agents"
+          }
+        }
+      }
+    },
+    "Value": {
+      "comment": "Environment variable value",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "值"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Value"
+          }
+        }
+      }
+    },
+    "Variables": {
+      "comment": "Form label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "环境变量列表"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Variables"
+          }
+        }
+      }
+    },
+    "Wednesday": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wednesday"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Wednesday"
+          }
+        }
+      }
+    },
+    "White": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "White"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "White"
+          }
+        }
+      }
+    },
+    "Working Directory": {
+      "comment": "Form label",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "工作目录"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Working Directory"
+          }
+        }
+      }
+    },
+    "XML": {
+      "comment": "Detail tab",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "XML 预览"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "XML"
+          }
+        }
+      }
+    },
+    "Yes": {
+      "comment": "Boolean value",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "是"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Yes"
+          }
+        }
+      }
+    },
+    "You have unsaved changes": {
+      "comment": "Unsaved changes notification text",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您有未保存的修改"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "You have unsaved changes"
+          }
+        }
+      }
+    },
+    "You must specify either the Program path or at least one argument in ProgramArguments.": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You must specify either the Program path or at least one argument in ProgramArguments."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "You must specify either the Program path or at least one argument in ProgramArguments."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
