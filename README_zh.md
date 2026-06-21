@@ -1,7 +1,7 @@
 # LaunchdManage
 
 <p align="center">
-  <img src="LaunchdManage/Resources/Assets.xcassets/AppIcon.appiconset/appicon_128x128.png" width="128" height="128" alt="LaunchdManage 图标">
+  <img src="LaunchdManage/Resources/Assets.xcassets/AppIcon.appiconset/appicon_128.png" width="128" height="128" alt="LaunchdManage 图标">
 </p>
 
 <p align="center">

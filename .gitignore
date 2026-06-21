@@ -1,0 +1,17 @@
+# Build artifacts
+build/
+DerivedData/
+
+# XcodeGen automatically generates the Xcode project
+*.xcodeproj/
+
+# Personal settings
+.idea/
+*.suo
+*.ntvsca
+*.ntvs_analysis.dat
+*.user
+*.xcuserstate
+
+# macOS system files
+.DS_Store
