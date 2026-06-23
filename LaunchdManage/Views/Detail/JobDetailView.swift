@@ -6,12 +6,18 @@ struct JobDetailView: View {
     
     @State private var viewModel: JobDetailViewModel
     @State private var logViewModel: LogViewModel
-    @State private var selectedTab: DetailTab = .overview
+    @State private var selectedTab: DetailTab = .editor
     @State private var xmlContent: String = ""
     @State private var xmlBeforeEditing: String = ""
+    /// 磁盘上 plist 的 XML 基准内容，用于判断脏状态，避免每次渲染都同步读盘
+    @State private var diskXML: String = ""
+    /// 诊断结果缓存，避免每次渲染都重新分析
+    @State private var diagnostics: [DiagnosticEntry] = []
     @State private var errorMessage: String?
     @State private var showErrorAlert = false
     @State private var showInspector = false
+    @Environment(JobListViewModel.self) private var listViewModel
+    @State private var codeMode = false
     
     init(job: LaunchdJob) {
         self.job = job
@@ -20,25 +26,19 @@ struct JobDetailView: View {
     }
     
     enum DetailTab: String, CaseIterable {
-        case overview
-        case configuration
-        case xml
+        case editor
         case logs
         
         var label: String {
             switch self {
-            case .overview: String(localized: "Overview", comment: "Detail tab")
-            case .configuration: String(localized: "Configuration", comment: "Detail tab")
-            case .xml: String(localized: "XML", comment: "Detail tab")
-            case .logs: String(localized: "Terminal", comment: "Detail tab")
+            case .editor: String(localized: "Editor", comment: "Detail tab")
+            case .logs: String(localized: "Logs", comment: "Detail tab")
             }
         }
         
         var icon: String {
             switch self {
-            case .overview: "info.circle"
-            case .configuration: "list.bullet.rectangle"
-            case .xml: "chevron.left.forwardslash.chevron.right"
+            case .editor: "slider.horizontal.3"
             case .logs: "terminal"
             }
         }
@@ -46,124 +46,201 @@ struct JobDetailView: View {
     
     /// 检查当前视图是否处于脏状态（有修改未保存）
     private var hasChanges: Bool {
-        if selectedTab == .xml {
-            // 如果在 XML 标签页下，比较当前的 xmlContent 和原 job 文件内容
-            if let originalXML = try? PlistSerializer.fileToXMLString(job.plistURL) {
-                return xmlContent != originalXML
-            }
-            return true
-        } else {
-            return viewModel.isDirty
-        }
+        // 代码模式下与磁盘基准比较；基准在 loadXML 时缓存，不在渲染期读盘
+        codeMode ? (xmlContent != diskXML) : viewModel.isDirty
     }
-    
+
     var body: some View {
         VStack(spacing: 0) {
-            // Tab 选择器
-            Picker(selection: $selectedTab) {
-                ForEach(DetailTab.allCases, id: \.self) { tab in
-                    Label(tab.label, systemImage: tab.icon)
-                        .tag(tab)
-                }
-            } label: {
-                EmptyView()
-            }
-            .pickerStyle(.segmented)
-            .frame(maxWidth: 400) // 限制最大宽度，防止大屏拉长变形
-            .padding(.horizontal)
-            .padding(.vertical, 10)
-            .onChange(of: selectedTab) { oldValue, newValue in
-                // 在切换 Tab 时进行双模同步
-                if newValue == .xml {
-                    // 进入 XML 面板时
-                    if viewModel.isDirty {
-                        // 如果表单被修改过，从当前表单草稿同步生成最新 XML
-                        if let draftXML = try? viewModel.generateDraftXML() {
-                            xmlContent = draftXML
-                        }
-                    } else {
-                        // 如果表单没有修改过，确保 xmlContent 保持为原文件内容
-                        if let originalXML = try? PlistSerializer.fileToXMLString(job.plistURL) {
-                            xmlContent = originalXML
-                        }
-                    }
-                    // 记录进入 XML 时的初始内容，用来识别用户是否在此期间修改过 XML
-                    xmlBeforeEditing = xmlContent
-                } else if oldValue == .xml {
-                    // 从 XML 面板切出时
-                    // 只有在用户真的修改过 XML 的情况下，才尝试解析并更新表单
-                    if xmlContent != xmlBeforeEditing {
-                        do {
-                            try viewModel.applyXML(xmlContent)
-                        } catch {
-                            errorMessage = String(localized: "Failed to sync XML back to form: \(error.localizedDescription)")
-                            showErrorAlert = true
-                            // 强制切回 XML tab 让用户修正
-                            selectedTab = .xml
-                        }
-                    }
-                }
+            // 头部基本信息面板
+            VStack(alignment: .leading, spacing: 6) {
+                Text(job.plistURL.path)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .textSelection(.enabled)
                 
-                // 停止日志流（如果切出 logs tab）
-                if oldValue == .logs {
-                    logViewModel.stopStreaming()
+                HStack(spacing: 8) {
+                    // 分类胶囊
+                    HStack(spacing: 4) {
+                        Image(systemName: job.category.symbolName)
+                        Text(job.category.displayName)
+                    }
+                    .font(.caption)
+                    .fontWeight(.medium)
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Color.primary.opacity(0.04))
+                    .cornerRadius(6)
+                    
+                    // 启用状态胶囊
+                    HStack(spacing: 4) {
+                        Image(systemName: job.disabled ? "xmark.circle.fill" : "checkmark.circle.fill")
+                        Text(job.disabled ? String(localized: "Disabled") : String(localized: "Enabled"))
+                    }
+                    .font(.caption)
+                    .fontWeight(.medium)
+                    .foregroundStyle(job.disabled ? Color.red : Color.green)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(job.disabled ? Color.red.opacity(0.08) : Color.green.opacity(0.08))
+                    .cornerRadius(6)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 6)
+                            .stroke(job.disabled ? Color.red.opacity(0.15) : Color.green.opacity(0.15), lineWidth: 0.5)
+                    )
+                    
+                    // 运行状态胶囊
+                    HStack(spacing: 4) {
+                        Image(systemName: job.status.isRunning ? "play.circle.fill" : "stop.circle.fill")
+                        Text(job.status.displayText)
+                    }
+                    .font(.caption)
+                    .fontWeight(.medium)
+                    .foregroundStyle(statusColor(for: job.status))
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(statusColor(for: job.status).opacity(0.08))
+                    .cornerRadius(6)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 6)
+                            .stroke(statusColor(for: job.status).opacity(0.15), lineWidth: 0.5)
+                    )
+                }
+                .padding(.top, 4)
+            }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 14)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            
+            Divider()
+            
+            // Tab 选择器与辅助按钮区
+            HStack {
+                Picker(selection: $selectedTab) {
+                    ForEach(DetailTab.allCases, id: \.self) { tab in
+                        Label(tab.label, systemImage: tab.icon)
+                            .tag(tab)
+                    }
+                } label: {
+                    EmptyView()
+                }
+                .pickerStyle(.segmented)
+                .frame(maxWidth: 240)
+                
+                Spacer()
+                
+                if selectedTab == .editor {
+                    Button {
+                        withAnimation(.easeInOut(duration: 0.2)) {
+                            codeMode.toggle()
+                        }
+                    } label: {
+                        Image(systemName: "chevron.left.forwardslash.chevron.right")
+                            .font(.system(size: 13, weight: .bold))
+                            .padding(6)
+                            .background(codeMode ? Color.accentColor.opacity(0.15) : Color.clear)
+                            .cornerRadius(6)
+                    }
+                    .buttonStyle(.plain)
+                    .help(String(localized: "Toggle XML Code View"))
                 }
             }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 8)
             
             Divider()
             
             // Tab 内容
-            ZStack {
+            ZStack(alignment: .bottom) {
                 switch selectedTab {
-                case .overview:
-                    OverviewTabView(job: job)
-                case .configuration:
-                    FormEditorView(viewModel: viewModel)
-                case .xml:
-                    XMLPreviewView(xmlContent: $xmlContent)
+                case .editor:
+                    VStack(spacing: 0) {
+                        if !diagnostics.isEmpty {
+                            VStack(alignment: .leading, spacing: 6) {
+                                ForEach(diagnostics) { diag in
+                                    HStack(alignment: .top, spacing: 8) {
+                                        Image(systemName: diag.iconName)
+                                            .font(.headline)
+                                            .foregroundStyle(diag.color)
+                                        
+                                        VStack(alignment: .leading, spacing: 2) {
+                                            Text(diag.message)
+                                                .font(.subheadline)
+                                                .fontWeight(.medium)
+                                            if let suggestion = diag.suggestion {
+                                                Text(suggestion)
+                                                    .font(.caption)
+                                                    .foregroundStyle(.secondary)
+                                            }
+                                        }
+                                    }
+                                    .padding(.horizontal, 12)
+                                    .padding(.vertical, 8)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .background(diag.backgroundColor)
+                                    .cornerRadius(6)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 6)
+                                            .stroke(diag.strokeColor, lineWidth: 1)
+                                    )
+                                }
+                            }
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 10)
+                            
+                            Divider()
+                        }
+                        
+                        if codeMode {
+                            XMLPreviewView(xmlContent: $xmlContent)
+                        } else {
+                            FormEditorView(viewModel: viewModel)
+                        }
+                    }
                 case .logs:
                     LogViewerView(viewModel: logViewModel)
                 }
+                
+                // 悬浮保存操作面板
+                if hasChanges {
+                    HStack {
+                        HStack(spacing: 8) {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .foregroundStyle(.orange)
+                            Text("You have unsaved changes", comment: "Unsaved changes notification text")
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                                .foregroundStyle(.secondary)
+                        }
+                        
+                        Spacer()
+                        
+                        Button(String(localized: "Revert", comment: "Button label")) {
+                            revertChanges()
+                        }
+                        
+                        Button(String(localized: "Apply", comment: "Button label")) {
+                            Task { await applyChanges() }
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .keyboardShortcut("s", modifiers: .command)
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 12)
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(12)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.primary.opacity(0.1), lineWidth: 1)
+                    )
+                    .shadow(color: Color.black.opacity(0.12), radius: 8, x: 0, y: 3)
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 16)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
-            // 底部操作区 (悬浮毛玻璃药丸面板)
-            if hasChanges {
-                HStack {
-                    HStack(spacing: 8) {
-                        Image(systemName: "exclamationmark.triangle.fill")
-                            .foregroundStyle(.orange)
-                        Text("You have unsaved changes", comment: "Unsaved changes notification text")
-                            .font(.subheadline)
-                            .fontWeight(.medium)
-                            .foregroundStyle(.secondary)
-                    }
-                    
-                    Spacer()
-                    
-                    Button(String(localized: "Revert", comment: "Button label")) {
-                        revertChanges()
-                    }
-                    
-                    Button(String(localized: "Apply", comment: "Button label")) {
-                        Task { await applyChanges() }
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .keyboardShortcut("s", modifiers: .command)
-                }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 12)
-                .background(.ultraThinMaterial)
-                .cornerRadius(12)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.primary.opacity(0.1), lineWidth: 1)
-                )
-                .shadow(color: Color.black.opacity(0.12), radius: 8, x: 0, y: 3)
-                .padding(.horizontal, 16)
-                .padding(.bottom, 16)
-                .transition(.move(edge: .bottom).combined(with: .opacity))
-            }
         }
         .navigationTitle(job.label)
         .alert(
@@ -174,11 +251,46 @@ struct JobDetailView: View {
         )
         .task(id: job.id) {
             await loadXML()
+            diagnostics = DiagnosticsService.shared.analyze(job)
         }
         .inspector(isPresented: $showInspector) {
             StatusDashboard(job: job)
         }
+        .onChange(of: codeMode) { oldValue, newValue in
+            if newValue {
+                if viewModel.isDirty {
+                    if let draftXML = try? viewModel.generateDraftXML() {
+                        xmlContent = draftXML
+                    }
+                } else {
+                    if let originalXML = try? PlistSerializer.fileToXMLString(job.plistURL) {
+                        xmlContent = originalXML
+                        diskXML = originalXML
+                    }
+                }
+                xmlBeforeEditing = xmlContent
+            } else {
+                if xmlContent != xmlBeforeEditing {
+                    do {
+                        try viewModel.applyXML(xmlContent)
+                    } catch {
+                        errorMessage = String(localized: "Failed to sync XML back to form: \(error.localizedDescription)")
+                        showErrorAlert = true
+                        codeMode = true
+                    }
+                }
+            }
+        }
+        .onChange(of: selectedTab) { oldValue, newValue in
+            if oldValue == .logs {
+                logViewModel.stopStreaming()
+            }
+        }
         .toolbar {
+            ToolbarItem(placement: .principal) {
+                ToolbarButtonsView(job: job)
+            }
+            
             ToolbarItem(placement: .primaryAction) {
                 Button {
                     showInspector.toggle()
@@ -192,14 +304,16 @@ struct JobDetailView: View {
     
     private func loadXML() async {
         do {
-            xmlContent = try PlistSerializer.fileToXMLString(job.plistURL)
+            let xml = try PlistSerializer.fileToXMLString(job.plistURL)
+            xmlContent = xml
+            diskXML = xml
         } catch {
             xmlContent = String(localized: "Failed to load XML: \(error.localizedDescription)")
         }
     }
     
     private func revertChanges() {
-        if selectedTab == .xml {
+        if codeMode {
             // 重新加载原 XML
             Task { await loadXML() }
             // 同时重置表单草稿为原本状态
@@ -211,18 +325,29 @@ struct JobDetailView: View {
     
     private func applyChanges() async {
         do {
-            if selectedTab == .xml {
+            if codeMode {
                 // 如果在 XML 模式下，首先尝试将最新的 XML 内容应用到 ViewModel 草稿
                 try viewModel.applyXML(xmlContent)
             }
             // 保存并重载服务
             try await viewModel.save()
             
-            // 保存成功后重新载入 XML 面板显示
+            // 保存成功后重新载入 XML 面板显示并刷新诊断
             await loadXML()
+            diagnostics = DiagnosticsService.shared.analyze(job)
         } catch {
             errorMessage = error.localizedDescription
             showErrorAlert = true
+        }
+    }
+    
+    private func statusColor(for status: JobStatus) -> Color {
+        switch status {
+        case .running: return .green
+        case .loaded: return .blue
+        case .stopped, .notLoaded: return .secondary
+        case .error: return .red
+        case .unknown: return .secondary
         }
     }
 }
@@ -426,5 +551,64 @@ private struct OverviewTabView: View {
             }
             .padding()
         }
+    }
+}
+
+/// 顶部工具栏控制按钮子视图，确保依赖 Observation 的 job 属性更新能自动重绘视图
+private struct ToolbarButtonsView: View {
+    let job: LaunchdJob
+    @Environment(JobListViewModel.self) private var listViewModel
+    
+    var body: some View {
+        ControlGroup {
+            Button {
+                Task { await listViewModel.loadService(job) }
+            } label: {
+                Label(String(localized: "Load"), systemImage: "tray.and.arrow.down")
+            }
+            .disabled(job.status.isLoaded)
+            .help(String(localized: "Load Service"))
+            
+            Button {
+                Task { await listViewModel.unloadService(job) }
+            } label: {
+                Label(String(localized: "Unload"), systemImage: "tray.and.arrow.up")
+            }
+            .disabled(!job.status.isLoaded)
+            .help(String(localized: "Unload Service"))
+            
+            Button {
+                Task { await listViewModel.startService(job) }
+            } label: {
+                Label(String(localized: "Start"), systemImage: "play.fill")
+            }
+            .disabled(!job.status.isLoaded)
+            .help(String(localized: "Start Service"))
+            
+            Button {
+                Task { await listViewModel.stopService(job) }
+            } label: {
+                Label(String(localized: "Stop"), systemImage: "square.fill")
+            }
+            .disabled(!job.status.isRunning)
+            .help(String(localized: "Stop Service"))
+            
+            Button {
+                Task { await listViewModel.enableService(job) }
+            } label: {
+                Label(String(localized: "Enable"), systemImage: "checkmark.circle")
+            }
+            .disabled(!job.disabled)
+            .help(String(localized: "Enable Service"))
+            
+            Button {
+                Task { await listViewModel.disableService(job) }
+            } label: {
+                Label(String(localized: "Disable"), systemImage: "xmark.circle")
+            }
+            .disabled(job.disabled)
+            .help(String(localized: "Disable Service"))
+        }
+        .controlGroupStyle(.navigation)
     }
 }

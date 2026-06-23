@@ -1,6 +1,25 @@
 import Foundation
 import Observation
 
+/// 服务列表的状态筛选类型
+enum FilterType: String, CaseIterable, Identifiable, Sendable {
+    case all
+    case running
+    case notRunning
+    case loaded
+    
+    var id: String { self.rawValue }
+    
+    var displayName: String {
+        switch self {
+        case .all: String(localized: "All", comment: "Filter label")
+        case .running: String(localized: "Running", comment: "Filter label")
+        case .notRunning: String(localized: "Not Running", comment: "Filter label")
+        case .loaded: String(localized: "Loaded", comment: "Filter label")
+        }
+    }
+}
+
 /// 服务列表视图模型
 @Observable
 @MainActor
@@ -11,6 +30,7 @@ final class JobListViewModel {
     var selectedCategories: Set<JobCategory> = Set(JobCategory.allCases)
     var isLoading: Bool = false
     var errorMessage: String?
+    var selectedFilter: FilterType = .all
     
     private let discoveryService = JobDiscoveryService.shared
     private let launchctlService = LaunchctlService.shared
@@ -27,7 +47,7 @@ final class JobListViewModel {
         }
     }
     
-    /// 按搜索和分类过滤后的 jobs
+    /// 按搜索、分类和状态过滤后的 jobs
     var filteredJobs: [LaunchdJob] {
         jobs.filter { job in
             let matchesCategory = selectedCategories.contains(job.category)
@@ -35,7 +55,17 @@ final class JobListViewModel {
                 job.label.localizedCaseInsensitiveContains(searchText) ||
                 (job.program?.localizedCaseInsensitiveContains(searchText) ?? false) ||
                 job.programArguments.contains { $0.localizedCaseInsensitiveContains(searchText) }
-            return matchesCategory && matchesSearch
+            
+            let matchesFilter: Bool = {
+                switch selectedFilter {
+                case .all: return true
+                case .running: return job.status.isRunning
+                case .notRunning: return !job.status.isRunning
+                case .loaded: return job.status.isLoaded
+                }
+            }()
+            
+            return matchesCategory && matchesSearch && matchesFilter
         }
     }
     
@@ -86,6 +116,61 @@ final class JobListViewModel {
                 domain: job.category.domainTarget,
                 label: job.label
             )
+            await refreshStatus()
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+    
+    /// 启动指定服务 (kickstart)
+    func startService(_ job: LaunchdJob) async {
+        do {
+            try await launchctlService.kickstartService(
+                domain: job.category.domainTarget,
+                label: job.label
+            )
+            await refreshStatus()
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+    
+    /// 停止指定服务 (SIGTERM)
+    func stopService(_ job: LaunchdJob) async {
+        do {
+            try await launchctlService.sendSignal(
+                15, // SIGTERM
+                domain: job.category.domainTarget,
+                label: job.label
+            )
+            await refreshStatus()
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+    
+    /// 启用指定服务
+    func enableService(_ job: LaunchdJob) async {
+        do {
+            try await launchctlService.enableService(
+                domain: job.category.domainTarget,
+                label: job.label
+            )
+            job.disabled = false
+            await refreshStatus()
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+    
+    /// 禁用指定服务
+    func disableService(_ job: LaunchdJob) async {
+        do {
+            try await launchctlService.disableService(
+                domain: job.category.domainTarget,
+                label: job.label
+            )
+            job.disabled = true
             await refreshStatus()
         } catch {
             errorMessage = error.localizedDescription

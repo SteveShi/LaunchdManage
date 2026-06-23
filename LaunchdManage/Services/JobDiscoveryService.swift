@@ -22,47 +22,60 @@ final class JobDiscoveryService {
     
     /// 扫描所有标准目录，返回发现的所有 job
     func discoverAllJobs() async -> [LaunchdJob] {
+        // 目录遍历与文件读取属 I/O 密集操作，放到后台线程执行，避免阻塞主线程导致界面卡顿
+        let rawPlists = await Task.detached(priority: .userInitiated) {
+            Self.readRawPlists()
+        }.value
+
+        // 回到主线程：反序列化并构造 MainActor 隔离的 LaunchdJob
         var allJobs: [LaunchdJob] = []
-        
-        for category in JobCategory.allCases {
-            let jobs = await discoverJobs(in: category)
-            allJobs.append(contentsOf: jobs)
-        }
-        
-        return allJobs
-    }
-    
-    /// 扫描特定类别的 job
-    func discoverJobs(in category: JobCategory) async -> [LaunchdJob] {
-        let directoryURL = category.directoryURL
-        let fileManager = FileManager.default
-        
-        guard fileManager.fileExists(atPath: directoryURL.path) else {
-            return []
-        }
-        
-        guard let contents = try? fileManager.contentsOfDirectory(
-            at: directoryURL,
-            includingPropertiesForKeys: [.isRegularFileKey],
-            options: [.skipsHiddenFiles]
-        ) else {
-            return []
-        }
-        
-        let plistFiles = contents.filter { $0.pathExtension == "plist" }
-        
-        var jobs: [LaunchdJob] = []
-        for plistURL in plistFiles {
+        for raw in rawPlists {
             do {
-                let job = try parser.parse(from: plistURL, category: category)
-                jobs.append(job)
+                guard let dict = try PropertyListSerialization.propertyList(
+                    from: raw.data, options: [], format: nil
+                ) as? [String: Any] else {
+                    continue
+                }
+                let job = try parser.parse(from: dict, url: raw.url, category: raw.category)
+                allJobs.append(job)
             } catch {
                 // 跳过无法解析的 plist 文件，记录日志
-                print("Warning: Failed to parse \(plistURL.lastPathComponent): \(error.localizedDescription)")
+                print("Warning: Failed to parse \(raw.url.lastPathComponent): \(error.localizedDescription)")
             }
         }
-        
-        return jobs
+        return allJobs
+    }
+
+    /// 后台读取到的原始 plist 数据（全部为值类型，可安全跨线程传递）
+    private struct RawPlist: Sendable {
+        let url: URL
+        let category: JobCategory
+        let data: Data
+    }
+
+    /// 在后台线程遍历所有标准目录并读取 plist 文件原始数据
+    private nonisolated static func readRawPlists() -> [RawPlist] {
+        let fileManager = FileManager.default
+        var result: [RawPlist] = []
+
+        for category in JobCategory.allCases {
+            let directoryURL = category.directoryURL
+            guard fileManager.fileExists(atPath: directoryURL.path) else { continue }
+
+            guard let contents = try? fileManager.contentsOfDirectory(
+                at: directoryURL,
+                includingPropertiesForKeys: [.isRegularFileKey],
+                options: [.skipsHiddenFiles]
+            ) else { continue }
+
+            for plistURL in contents where plistURL.pathExtension == "plist" {
+                if let data = try? Data(contentsOf: plistURL) {
+                    result.append(RawPlist(url: plistURL, category: category, data: data))
+                }
+            }
+        }
+
+        return result
     }
     
     /// 为 jobs 填充运行时状态信息

@@ -33,21 +33,32 @@ actor ShellExecutor {
         process.standardError = stderrPipe
         
         try process.run()
-        
-        // Read output asynchronously
-        let stdoutData = stdoutPipe.fileHandleForReading.readDataToEndOfFile()
-        let stderrData = stderrPipe.fileHandleForReading.readDataToEndOfFile()
-        
+
+        // 并发读取 stdout/stderr，避免任一管道缓冲区(~64KB)写满后子进程阻塞、
+        // 父进程在另一管道上 readDataToEndOfFile 永久等待而死锁
+        async let stdoutData = Self.readToEnd(stdoutPipe.fileHandleForReading)
+        async let stderrData = Self.readToEnd(stderrPipe.fileHandleForReading)
+        let (out, err) = await (stdoutData, stderrData)
+
         process.waitUntilExit()
         
-        let stdout = String(data: stdoutData, encoding: .utf8) ?? ""
-        let stderr = String(data: stderrData, encoding: .utf8) ?? ""
-        
+        let stdout = String(data: out, encoding: .utf8) ?? ""
+        let stderr = String(data: err, encoding: .utf8) ?? ""
+
         return CommandResult(
             stdout: stdout,
             stderr: stderr,
             exitCode: process.terminationStatus
         )
+    }
+
+    /// 在后台队列上同步读取管道直到 EOF，包装为可并发 await 的异步调用
+    private static func readToEnd(_ handle: FileHandle) async -> Data {
+        await withCheckedContinuation { continuation in
+            DispatchQueue.global(qos: .utility).async {
+                continuation.resume(returning: handle.readDataToEndOfFile())
+            }
+        }
     }
     
     /// 执行 launchctl 命令
