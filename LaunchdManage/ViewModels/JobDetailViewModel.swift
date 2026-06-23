@@ -220,6 +220,14 @@ final class JobDetailViewModel {
         
         if isCreation {
             let finalURL = category.directoryURL.appendingPathComponent("\(label.trimmingCharacters(in: .whitespacesAndNewlines)).plist")
+            // 防止新建时静默覆盖同名已存在的配置（否则会清空他人现有的 job）
+            if FileManager.default.fileExists(atPath: finalURL.path) {
+                throw NSError(
+                    domain: "JobDetailViewModel",
+                    code: 409,
+                    userInfo: [NSLocalizedDescriptionKey: String(localized: "A configuration with this label already exists")]
+                )
+            }
             self.plistURL = finalURL
             job.plistURL = finalURL
         }
