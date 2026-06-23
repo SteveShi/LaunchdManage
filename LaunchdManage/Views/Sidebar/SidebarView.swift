@@ -29,7 +29,42 @@ struct SidebarView: View {
     var body: some View {
         @Bindable var viewModel = viewModel
         
-        List(selection: $viewModel.selectedJobID) {
+        VStack(spacing: 0) {
+            // 快捷状态筛选栏
+            HStack(spacing: 6) {
+                ForEach(FilterType.allCases) { filter in
+                    Button {
+                        viewModel.selectedFilter = filter
+                    } label: {
+                        HStack(spacing: 5) {
+                            if filter != .all {
+                                Circle()
+                                    .fill(circleColor(for: filter))
+                                    .frame(width: 6, height: 6)
+                            }
+                            Text(filter.displayName)
+                                .font(.caption)
+                                .fontWeight(.medium)
+                        }
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(
+                            viewModel.selectedFilter == filter
+                            ? Color.primary.opacity(0.12)
+                            : Color.primary.opacity(0.04)
+                        )
+                        .cornerRadius(6)
+                    }
+                    .buttonStyle(.plain)
+                }
+                Spacer()
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 8)
+            
+            Divider()
+            
+            List(selection: $viewModel.selectedJobID) {
             if viewModel.isLoading {
                 HStack {
                     ProgressView()
@@ -56,6 +91,7 @@ struct SidebarView: View {
                 }
             }
         }
+        } // 闭合 VStack
         .searchable(
             text: Bindable(viewModel).searchText,
             prompt: Text("Search Services", comment: "Search field placeholder")
@@ -168,6 +204,15 @@ struct SidebarView: View {
             showingDeleteAlert = true
         } label: {
             Label(String(localized: "Delete", comment: "Context menu action"), systemImage: "trash")
+        }
+    }
+    
+    private func circleColor(for filter: FilterType) -> Color {
+        switch filter {
+        case .all: return .clear
+        case .running: return .green
+        case .notRunning: return .orange
+        case .loaded: return .blue
         }
     }
 }
