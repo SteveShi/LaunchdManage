@@ -10,7 +10,7 @@ struct LaunchdManageApp: App {
             ContentView()
                 .environment(jobListViewModel)
         }
-        .defaultSize(width: 1000, height: 650)
+        .defaultSize(width: 1180, height: 650)
         .commands {
             SidebarCommands()
         }
@@ -37,6 +37,10 @@ struct ContentView: View {
         @Bindable var viewModel = viewModel
         NavigationSplitView {
             SidebarView()
+                .navigationSplitViewColumnWidth(min: 180, ideal: 220)
+        } content: {
+            JobListView()
+                .navigationSplitViewColumnWidth(min: 280, ideal: 360)
         } detail: {
             if let selectedID = viewModel.selectedJobID,
                let job = viewModel.jobs.first(where: { $0.id == selectedID }) {
@@ -46,7 +50,6 @@ struct ContentView: View {
                 EmptyStateView()
             }
         }
-        .navigationSplitViewColumnWidth(min: 250, ideal: 300)
         .onDrop(of: [.fileURL], isTargeted: nil) { providers in
             handleDrop(providers: providers)
         }

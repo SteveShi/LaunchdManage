@@ -1,7 +1,7 @@
-# LaunchdManage
+# Launchdmanager
 
 <p align="center">
-  <img src="LaunchdManage/Resources/Assets.xcassets/AppIcon.appiconset/appicon_128.png" width="128" height="128" alt="LaunchdManage 图标">
+  <img src="LaunchdManage/Resources/Assets.xcassets/AppIcon.appiconset/appicon_128.png" width="128" height="128" alt="Launchdmanager 图标">
 </p>
 
 <p align="center">
@@ -18,13 +18,13 @@
 
 ---
 
-**LaunchdManage** 是一款专为 macOS 设计的专业系统级桌面管理工具，用于浏览、创建、编辑、调度以及监控 `LaunchAgents` 与 `LaunchDaemons`。本软件定位为 LingonX 和 LaunchControl 的现代化、轻量化、非沙盒替代方案，提供优雅的原生交互与强大的开发调试集成。
+**Launchdmanager** 是一款专为 macOS 设计的专业系统级桌面管理工具，用于浏览、创建、编辑、调度以及监控 `LaunchAgents` 与 `LaunchDaemons`。本软件定位为 LingonX 和 LaunchControl 的现代化、轻量化、非沙盒替代方案，提供优雅的原生交互与强大的开发调试集成。
 
 ## 📐 架构设计
 
 ```mermaid
 graph TB
-    subgraph "LaunchdManage 主应用"
+    subgraph "Launchdmanager 主应用"
         UI["SwiftUI 视图"]
         VM["视图模型 (@Observable)"]
         Core["核心业务服务层"]
@@ -93,8 +93,8 @@ brew install xcodegen
 
 1. 克隆本项目仓库至本地：
    ```bash
-   git clone https://github.com/lpgneg19/LaunchdManage.git
-   cd LaunchdManage
+   git clone https://github.com/SteveShi/Launchdmanager.git
+   cd Launchdmanager
    ```
 
 2. 使用 XcodeGen 生成 Xcode 项目工程文件：
@@ -104,7 +104,7 @@ brew install xcodegen
 
 3. 用 Xcode 打开生成的项目：
    ```bash
-   open LaunchdManage.xcodeproj
+   open Launchdmanager.xcodeproj
    ```
 
 4. 选择 **LaunchdManage** Scheme 目标，在 Signing 页面设置您的本地开发者签名，按下快捷键 `Cmd+R` 编译并运行。

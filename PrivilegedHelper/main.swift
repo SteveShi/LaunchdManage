@@ -18,7 +18,7 @@ final class HelperDelegate: NSObject, NSXPCListenerDelegate {
 
 // 初始化 XPC Listener，指向注册的 Mach 管道名称
 let delegate = HelperDelegate()
-let listener = NSXPCListener(machServiceName: "com.steveshi.launchdmanage.helper")
+let listener = NSXPCListener(machServiceName: "com.steveshi.launchdmanager.helper")
 listener.delegate = delegate
 listener.resume()
 

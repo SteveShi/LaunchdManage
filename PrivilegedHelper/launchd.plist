@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>com.steveshi.launchdmanage.helper</string>
+	<string>com.steveshi.launchdmanager.helper</string>
 	<key>MachServices</key>
 	<dict>
-		<key>com.steveshi.launchdmanage.helper</key>
+		<key>com.steveshi.launchdmanager.helper</key>
 		<true/>
 	</dict>
 	<key>AssociatedBundleIdentifiers</key>
 	<array>
-		<string>com.steveshi.launchdmanage</string>
+		<string>com.steveshi.launchdmanager</string>
 	</array>
 </dict>
 </plist>

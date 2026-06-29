@@ -10,7 +10,7 @@ struct EmptyStateView: View {
             )
         } description: {
             Text(
-                "Select a service from the sidebar to view its details.",
+                "Select a service from the service list to view its details.",
                 comment: "Empty state description"
             )
         }

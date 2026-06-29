@@ -27,7 +27,7 @@ final class JobListViewModel {
     var jobs: [LaunchdJob] = []
     var selectedJobID: String?
     var searchText: String = ""
-    var selectedCategories: Set<JobCategory> = Set(JobCategory.allCases)
+    var selectedCategory: JobCategory = .userAgent
     var isLoading: Bool = false
     var errorMessage: String?
     var selectedFilter: FilterType = .all
@@ -50,7 +50,7 @@ final class JobListViewModel {
     /// 按搜索、分类和状态过滤后的 jobs
     var filteredJobs: [LaunchdJob] {
         jobs.filter { job in
-            let matchesCategory = selectedCategories.contains(job.category)
+            let matchesCategory = job.category == selectedCategory
             let matchesSearch = searchText.isEmpty || 
                 job.label.localizedCaseInsensitiveContains(searchText) ||
                 (job.program?.localizedCaseInsensitiveContains(searchText) ?? false) ||
@@ -69,13 +69,25 @@ final class JobListViewModel {
         }
     }
     
-    /// 按分类分组的 jobs
-    var groupedJobs: [(category: JobCategory, jobs: [LaunchdJob])] {
-        JobCategory.allCases.compactMap { category in
-            let categoryJobs = filteredJobs
-                .filter { $0.category == category }
-                .sorted { $0.label.localizedCaseInsensitiveCompare($1.label) == .orderedAscending }
-            return categoryJobs.isEmpty ? nil : (category: category, jobs: categoryJobs)
+    /// 当前分类下按名称排序的服务
+    var sortedFilteredJobs: [LaunchdJob] {
+        filteredJobs.sorted {
+            $0.label.localizedCaseInsensitiveCompare($1.label) == .orderedAscending
+        }
+    }
+    
+    /// 每个分类中的原始服务数量
+    var categoryCounts: [JobCategory: Int] {
+        JobCategory.allCases.reduce(into: [:]) { counts, category in
+            counts[category] = jobs.filter { $0.category == category }.count
+        }
+    }
+    
+    /// 清理当前列表中已经不可见的选中项
+    func clearSelectionIfNeeded() {
+        guard let selectedJobID else { return }
+        if !sortedFilteredJobs.contains(where: { $0.id == selectedJobID }) {
+            self.selectedJobID = nil
         }
     }
     
@@ -88,6 +100,7 @@ final class JobListViewModel {
         await discoveryService.enrichWithStatus(discoveredJobs)
         
         jobs = discoveredJobs
+        clearSelectionIfNeeded()
         isLoading = false
     }
     

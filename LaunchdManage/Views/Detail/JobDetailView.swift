@@ -53,67 +53,54 @@ struct JobDetailView: View {
     var body: some View {
         VStack(spacing: 0) {
             // 头部基本信息面板
-            VStack(alignment: .leading, spacing: 6) {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(job.label)
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .lineLimit(1)
+                    .truncationMode(.middle)
+                    .textSelection(.enabled)
+                
                 Text(job.plistURL.path)
                     .font(.caption)
                     .foregroundStyle(.secondary)
+                    .lineLimit(1)
+                    .truncationMode(.middle)
                     .textSelection(.enabled)
                 
-                HStack(spacing: 8) {
-                    // 分类胶囊
-                    HStack(spacing: 4) {
+                HStack(spacing: 14) {
+                    HStack(spacing: 6) {
                         Image(systemName: job.category.symbolName)
                         Text(job.category.displayName)
                     }
-                    .font(.caption)
-                    .fontWeight(.medium)
                     .foregroundStyle(.secondary)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(Color.primary.opacity(0.04))
-                    .cornerRadius(6)
                     
-                    // 启用状态胶囊
-                    HStack(spacing: 4) {
-                        Image(systemName: job.disabled ? "xmark.circle.fill" : "checkmark.circle.fill")
-                        Text(job.disabled ? String(localized: "Disabled") : String(localized: "Enabled"))
+                    HStack(spacing: 6) {
+                        Image(systemName: "bolt.fill")
+                        Text(job.status.isLoaded ? String(localized: "Loaded", comment: "Status label") : String(localized: "Not Loaded", comment: "Status label"))
                     }
-                    .font(.caption)
-                    .fontWeight(.medium)
-                    .foregroundStyle(job.disabled ? Color.red : Color.green)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(job.disabled ? Color.red.opacity(0.08) : Color.green.opacity(0.08))
-                    .cornerRadius(6)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 6)
-                            .stroke(job.disabled ? Color.red.opacity(0.15) : Color.green.opacity(0.15), lineWidth: 0.5)
-                    )
+                    .foregroundStyle(job.status.isLoaded ? .blue : .secondary)
                     
-                    // 运行状态胶囊
-                    HStack(spacing: 4) {
-                        Image(systemName: job.status.isRunning ? "play.circle.fill" : "stop.circle.fill")
-                        Text(job.status.displayText)
+                    HStack(spacing: 6) {
+                        Image(systemName: job.disabled ? "xmark.circle" : "checkmark.circle")
+                        Text(job.disabled ? String(localized: "Disabled", comment: "Status label") : String(localized: "Enabled", comment: "Status label"))
                     }
-                    .font(.caption)
-                    .fontWeight(.medium)
-                    .foregroundStyle(statusColor(for: job.status))
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(statusColor(for: job.status).opacity(0.08))
-                    .cornerRadius(6)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 6)
-                            .stroke(statusColor(for: job.status).opacity(0.15), lineWidth: 0.5)
-                    )
+                    .foregroundStyle(job.disabled ? .orange : .green)
+                    
+                    HStack(spacing: 6) {
+                        Image(systemName: job.status.isRunning ? "play.circle" : "stop.circle")
+                        Text(runningStatusText)
+                    }
+                    .foregroundStyle(job.status.isRunning ? .green : .orange)
                 }
-                .padding(.top, 4)
+                .font(.caption)
+                .fontWeight(.semibold)
+                .lineLimit(1)
             }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 14)
+            .padding(.horizontal, 28)
+            .padding(.top, 24)
+            .padding(.bottom, 14)
             .frame(maxWidth: .infinity, alignment: .leading)
-            
-            Divider()
             
             // Tab 选择器与辅助按钮区
             HStack {
@@ -126,7 +113,7 @@ struct JobDetailView: View {
                     EmptyView()
                 }
                 .pickerStyle(.segmented)
-                .frame(maxWidth: 240)
+                .frame(maxWidth: .infinity)
                 
                 Spacer()
                 
@@ -146,10 +133,8 @@ struct JobDetailView: View {
                     .help(String(localized: "Toggle XML Code View"))
                 }
             }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 8)
-            
-            Divider()
+            .padding(.horizontal, 28)
+            .padding(.vertical, 10)
             
             // Tab 内容
             ZStack(alignment: .bottom) {
@@ -242,7 +227,7 @@ struct JobDetailView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .navigationTitle(job.label)
+        .navigationTitle("")
         .alert(
             String(localized: "Error", comment: "Alert title"),
             isPresented: $showErrorAlert,
@@ -341,13 +326,14 @@ struct JobDetailView: View {
         }
     }
     
-    private func statusColor(for status: JobStatus) -> Color {
-        switch status {
-        case .running: return .green
-        case .loaded: return .blue
-        case .stopped, .notLoaded: return .secondary
-        case .error: return .red
-        case .unknown: return .secondary
+    private var runningStatusText: String {
+        switch job.status {
+        case .running(let pid):
+            String(localized: "Running (PID: \(pid))")
+        case .error(let code):
+            String(localized: "Error (\(code))")
+        default:
+            String(localized: "Not Running", comment: "Status label")
         }
     }
 }

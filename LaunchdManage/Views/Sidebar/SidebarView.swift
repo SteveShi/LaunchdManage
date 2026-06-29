@@ -3,97 +3,92 @@ import SwiftUI
 /// 侧边栏视图
 struct SidebarView: View {
     @Environment(JobListViewModel.self) private var viewModel
-    @Environment(\.openWindow) private var openWindow
     @AppStorage("showSystemServices") private var showSystemServices = true
+    
+    var body: some View {
+        List(selection: selectedCategoryBinding) {
+            ForEach(visibleCategories) { category in
+                Label {
+                    HStack {
+                        Text(category.displayName)
+                        Spacer()
+                        if let count = viewModel.categoryCounts[category], count > 0 {
+                            Text(count, format: .number)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                } icon: {
+                    Image(systemName: category.symbolName)
+                }
+                .tag(category)
+            }
+        }
+        .navigationTitle(String(localized: "Categories", comment: "Sidebar navigation title"))
+        .onChange(of: showSystemServices, initial: true) { _, isShowing in
+            if !isShowing && viewModel.selectedCategory.isSystemProtected {
+                viewModel.selectedCategory = .userAgent
+            }
+        }
+    }
+    
+    private var visibleCategories: [JobCategory] {
+        JobCategory.allCases.filter { category in
+            showSystemServices || !category.isSystemProtected
+        }
+    }
+    
+    private var selectedCategoryBinding: Binding<JobCategory?> {
+        Binding {
+            viewModel.selectedCategory
+        } set: { category in
+            if let category {
+                viewModel.selectedCategory = category
+                viewModel.clearSelectionIfNeeded()
+            }
+        }
+    }
+}
+
+/// 服务列表列视图
+struct JobListView: View {
+    @Environment(JobListViewModel.self) private var viewModel
+    @Environment(\.openWindow) private var openWindow
     @AppStorage("hideDisabledServices") private var hideDisabledServices = false
-    @State private var expandedCategories: Set<JobCategory> = Set(JobCategory.allCases)
     
     // MARK: - 新建与删除状态
     @State private var showingNewJobSheet = false
     @State private var jobToDelete: LaunchdJob? = nil
     @State private var showingDeleteAlert = false
     
-    private func isExpandedBinding(for category: JobCategory) -> Binding<Bool> {
-        Binding(
-            get: { expandedCategories.contains(category) },
-            set: { isExpanded in
-                if isExpanded {
-                    expandedCategories.insert(category)
-                } else {
-                    expandedCategories.remove(category)
-                }
-            }
-        )
-    }
-    
     var body: some View {
         @Bindable var viewModel = viewModel
         
         VStack(spacing: 0) {
-            // 快捷状态筛选栏
-            HStack(spacing: 6) {
-                ForEach(FilterType.allCases) { filter in
-                    Button {
-                        viewModel.selectedFilter = filter
-                    } label: {
-                        HStack(spacing: 5) {
-                            if filter != .all {
-                                Circle()
-                                    .fill(circleColor(for: filter))
-                                    .frame(width: 6, height: 6)
-                            }
-                            Text(filter.displayName)
-                                .font(.caption)
-                                .fontWeight(.medium)
-                        }
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(
-                            viewModel.selectedFilter == filter
-                            ? Color.primary.opacity(0.12)
-                            : Color.primary.opacity(0.04)
-                        )
-                        .cornerRadius(6)
-                    }
-                    .buttonStyle(.plain)
-                }
-                Spacer()
-            }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 8)
-            
-            Divider()
+            statusFilterBar
             
             List(selection: $viewModel.selectedJobID) {
-            if viewModel.isLoading {
-                HStack {
-                    ProgressView()
-                        .controlSize(.small)
-                    Text("Loading Services...", comment: "Sidebar loading indicator")
-                        .foregroundStyle(.secondary)
-                }
-            } else {
-                ForEach(filteredGroupedJobs, id: \.category) { group in
-                    Section(isExpanded: isExpandedBinding(for: group.category)) {
-                        ForEach(group.jobs) { job in
-                            JobRowView(job: job)
-                                .tag(job.id)
-                                .contextMenu {
-                                    jobContextMenu(for: job)
-                                }
-                        }
-                    } header: {
-                        CategoryHeaderView(
-                            category: group.category,
-                            count: group.jobs.count
-                        )
+                if viewModel.isLoading {
+                    HStack {
+                        ProgressView()
+                            .controlSize(.small)
+                        Text("Loading Services...", comment: "Service list loading indicator")
+                            .foregroundStyle(.secondary)
+                    }
+                } else {
+                    ForEach(filteredJobs) { job in
+                        JobRowView(job: job)
+                            .tag(job.id)
+                            .contextMenu {
+                                jobContextMenu(for: job)
+                            }
                     }
                 }
             }
+            .listStyle(.plain)
         }
-        } // 闭合 VStack
         .searchable(
-            text: Bindable(viewModel).searchText,
+            text: $viewModel.searchText,
             prompt: Text("Search Services", comment: "Search field placeholder")
         )
         .toolbar {
@@ -125,11 +120,9 @@ struct SidebarView: View {
                 .keyboardShortcut("r", modifiers: .command)
             }
         }
-        .navigationTitle(String(localized: "Services", comment: "Sidebar navigation title"))
-        
-        // MARK: - 弹窗 Sheet 和 警告框
+        .navigationTitle(viewModel.selectedCategory.displayName)
         .sheet(isPresented: $showingNewJobSheet) {
-            NewJobView {
+            NewJobView(defaultCategory: viewModel.selectedCategory) {
                 Task {
                     await viewModel.loadAllJobs()
                 }
@@ -155,20 +148,58 @@ struct SidebarView: View {
         }
     }
     
-    private var filteredGroupedJobs: [(category: JobCategory, jobs: [LaunchdJob])] {
-        viewModel.groupedJobs.compactMap { group in
-            if !showSystemServices && group.category.isSystemProtected {
-                return nil
-            }
-            
-            let jobs = group.jobs.filter { job in
-                if hideDisabledServices && job.disabled {
-                    return false
+    private var statusFilterBar: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 8) {
+                ForEach(FilterType.allCases) { filter in
+                    Button {
+                        viewModel.selectedFilter = filter
+                    } label: {
+                        HStack(spacing: 8) {
+                            if filter != .all {
+                                Circle()
+                                    .fill(color(for: filter))
+                                    .frame(width: 7, height: 7)
+                            }
+                            
+                            Text(filter.displayName)
+                                .font(.subheadline)
+                                .fontWeight(.semibold)
+                        }
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 5)
+                        .background(
+                            Capsule()
+                                .fill(viewModel.selectedFilter == filter ? Color.accentColor.opacity(0.18) : Color.primary.opacity(0.06))
+                        )
+                        .overlay(
+                            Capsule()
+                                .stroke(viewModel.selectedFilter == filter ? Color.accentColor.opacity(0.65) : Color.clear, lineWidth: 1)
+                        )
+                    }
+                    .buttonStyle(.plain)
                 }
-                return true
             }
-            
-            return jobs.isEmpty ? nil : (category: group.category, jobs: jobs)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 10)
+        }
+        .onChange(of: viewModel.selectedFilter) { _, _ in
+            viewModel.clearSelectionIfNeeded()
+        }
+    }
+    
+    private var filteredJobs: [LaunchdJob] {
+        viewModel.sortedFilteredJobs.filter { job in
+            !(hideDisabledServices && job.disabled)
+        }
+    }
+    
+    private func color(for filter: FilterType) -> Color {
+        switch filter {
+        case .all: .accentColor
+        case .running: .green
+        case .notRunning: .orange
+        case .loaded: .blue
         }
     }
     
@@ -204,15 +235,6 @@ struct SidebarView: View {
             showingDeleteAlert = true
         } label: {
             Label(String(localized: "Delete", comment: "Context menu action"), systemImage: "trash")
-        }
-    }
-    
-    private func circleColor(for filter: FilterType) -> Color {
-        switch filter {
-        case .all: return .clear
-        case .running: return .green
-        case .notRunning: return .orange
-        case .loaded: return .blue
         }
     }
 }

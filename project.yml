@@ -1,4 +1,4 @@
-name: LaunchdManage
+name: Launchdmanager
 options:
   bundleIdPrefix: com.steveshi
   deploymentTarget:
@@ -18,9 +18,10 @@ settings:
     MACOSX_DEPLOYMENT_TARGET: "14.0"
     ENABLE_USER_SCRIPT_SANDBOXING: false
     CODE_SIGN_IDENTITY: "-"
-    PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.launchdmanage
+    PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.launchdmanager
     INFOPLIST_KEY_LSApplicationCategoryType: "public.app-category.utilities"
-    INFOPLIST_KEY_CFBundleDisplayName: LaunchdManage
+    PRODUCT_NAME: Launchdmanager
+    INFOPLIST_KEY_CFBundleDisplayName: Launchdmanager
     INFOPLIST_KEY_NSHumanReadableCopyright: "Copyright © 2025 Steve Shi. All rights reserved."
 targets:
   LaunchdManage:
@@ -35,7 +36,8 @@ targets:
         path: Contents/Library/LaunchServices
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.launchdmanage
+        PRODUCT_NAME: Launchdmanager
+        PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.launchdmanager
         MARKETING_VERSION: 0.0.1
         CURRENT_PROJECT_VERSION: 1
         INFOPLIST_KEY_LSApplicationCategoryType: "public.app-category.utilities"
@@ -53,8 +55,8 @@ targets:
       - path: LaunchdManage/XPC/HelperProtocol.swift
     settings:
       base:
-        PRODUCT_NAME: com.steveshi.launchdmanage.helper
-        PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.launchdmanage.helper
+        PRODUCT_NAME: com.steveshi.launchdmanager.helper
+        PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.launchdmanager.helper
         CREATE_INFOPLIST_SECTION_IN_BINARY: "YES"
         INFOPLIST_FILE: PrivilegedHelper/Info.plist
         LAUNCHD_PLIST_FILE: PrivilegedHelper/launchd.plist

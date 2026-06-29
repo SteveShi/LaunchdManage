@@ -1,7 +1,7 @@
-# LaunchdManage
+# Launchdmanager
 
 <p align="center">
-  <img src="LaunchdManage/Resources/Assets.xcassets/AppIcon.appiconset/appicon_128.png" width="128" height="128" alt="LaunchdManage Icon">
+  <img src="LaunchdManage/Resources/Assets.xcassets/AppIcon.appiconset/appicon_128.png" width="128" height="128" alt="Launchdmanager Icon">
 </p>
 
 <p align="center">
@@ -18,13 +18,13 @@
 
 ---
 
-**LaunchdManage** is a professional desktop utility for macOS designed to inspect, create, edit, schedule, and monitor `LaunchAgents` and `LaunchDaemons`. Positioned as a modern, lightweight, non-sandboxed alternative to tools like LingonX and LaunchControl, it offers a seamless native interface and advanced development integrations.
+**Launchdmanager** is a professional desktop utility for macOS designed to inspect, create, edit, schedule, and monitor `LaunchAgents` and `LaunchDaemons`. Positioned as a modern, lightweight, non-sandboxed alternative to tools like LingonX and LaunchControl, it offers a seamless native interface and advanced development integrations.
 
 ## 📐 Architecture
 
 ```mermaid
 graph TB
-    subgraph "LaunchdManage.app"
+    subgraph "Launchdmanager.app"
         UI["SwiftUI Views"]
         VM["ViewModels (@Observable)"]
         Core["Core Services Layer"]
@@ -93,8 +93,8 @@ brew install xcodegen
 
 1. Clone this repository to your local drive:
    ```bash
-   git clone https://github.com/lpgneg19/LaunchdManage.git
-   cd LaunchdManage
+   git clone https://github.com/SteveShi/Launchdmanager.git
+   cd Launchdmanager
    ```
 
 2. Generate the Xcode Project using XcodeGen:
@@ -104,7 +104,7 @@ brew install xcodegen
 
 3. Open the project in Xcode:
    ```bash
-   open LaunchdManage.xcodeproj
+   open Launchdmanager.xcodeproj
    ```
 
 4. Select the **LaunchdManage** scheme, configure your local signing options, and press `Cmd+R` to build and run the application.

@@ -17,7 +17,7 @@ final class XPCClient {
         }
 
         // 建立连接到 Mach 服务的持久 XPC 管道
-        let newConnection = NSXPCConnection(machServiceName: "com.steveshi.launchdmanage.helper", options: .privileged)
+        let newConnection = NSXPCConnection(machServiceName: "com.steveshi.launchdmanager.helper", options: .privileged)
         newConnection.remoteObjectInterface = NSXPCInterface(with: HelperProtocol.self)
 
         newConnection.invalidationHandler = { [weak self] in
@@ -49,7 +49,7 @@ final class XPCClient {
     
     /// 使用 SMAppService 注册并激活特权后台守护进程
     func registerHelper() throws {
-        let service = SMAppService.daemon(plistName: "com.steveshi.launchdmanage.helper.plist")
+        let service = SMAppService.daemon(plistName: "com.steveshi.launchdmanager.helper.plist")
         
         switch service.status {
         case .enabled:
@@ -63,7 +63,7 @@ final class XPCClient {
     
     /// 使用 SMAppService 注销并清理特权后台守护进程
     func unregisterHelper() async throws {
-        let service = SMAppService.daemon(plistName: "com.steveshi.launchdmanage.helper.plist")
+        let service = SMAppService.daemon(plistName: "com.steveshi.launchdmanager.helper.plist")
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             service.unregister { error in
                 if let error = error {
@@ -77,7 +77,7 @@ final class XPCClient {
     
     /// 检查特权服务的运行状态
     var helperStatus: SMAppService.Status {
-        let service = SMAppService.daemon(plistName: "com.steveshi.launchdmanage.helper.plist")
+        let service = SMAppService.daemon(plistName: "com.steveshi.launchdmanager.helper.plist")
         return service.status
     }
     
